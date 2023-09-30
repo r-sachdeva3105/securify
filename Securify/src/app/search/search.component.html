@@ -1,0 +1,10 @@
+<form>
+    <mat-form-field>
+        <mat-label>Enter a URL</mat-label>
+        <input matInput type="url" placeholder="Ex:  www.google.ca" [formControl]="urlInput">
+        <mat-error *ngIf="urlInput.hasError('required')">
+            URL is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="analyseURL()">Analyse</button>
+</form>
