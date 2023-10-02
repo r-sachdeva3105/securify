@@ -1,10 +1,13 @@
 <form>
     <mat-form-field>
         <mat-label>Enter a URL</mat-label>
-        <input matInput type="url" placeholder="Ex:  www.google.ca" [formControl]="urlInput">
+        <input matInput placeholder="Ex:  www.google.ca" autofocus [formControl]="urlInput">
         <mat-error *ngIf="urlInput.hasError('required')">
             URL is <strong>required</strong>
         </mat-error>
+        <mat-error *ngIf="urlInput.hasError('pattern')">
+            Enter a <strong>valid</strong> URL
+        </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="analyseURL()">Analyse</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="urlInput.hasError('required') || urlInput.hasError('pattern')" (click)="redirect()">Analyse</button>
 </form>

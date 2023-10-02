@@ -6,7 +6,7 @@ import { AnalysisComponent } from './analysis/analysis.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'search' },
   { path: 'search', component: SearchComponent },
-  { path: 'analysis', component: AnalysisComponent }
+  { path: 'analysis/:url', component: AnalysisComponent }
 ];
 
 @NgModule({
