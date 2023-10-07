@@ -1,1 +1,12 @@
-<p>analysis works!</p>
+<h1>URL Report</h1>
+<div>
+    <h2>Result</h2>
+    <p class="green" *ngIf="!isSuspicious()">This website looks safe</p>
+    <p class="red" *ngIf="isSuspicious()">This website looks suspicious</p>
+</div>
+<div>
+    <h2>General Information</h2>
+</div>
+<div>
+    <h2>Security and Privacy Concerns</h2>
+</div>

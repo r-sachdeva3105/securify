@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
+import response from '../assets/response.json'
 
 @Component({
-  selector: 'app-analysis',
+  selector: 'analysis',
   templateUrl: './analysis.component.html',
   styleUrls: ['./analysis.component.sass']
 })
@@ -20,14 +21,24 @@ export class AnalysisComponent {
     this.url = this.route.snapshot.paramMap.get('url');
     this.urlId = btoa(this.url);
     this.analysisReport();
-    
   }
 
   public analysisReport() {
-    this.appService.getReport(this.urlId).subscribe((response: any[]) => {
-      this.report = response;
-      console.log(this.report);
-      
-    })
+    // this.appService.getReport(this.urlId).subscribe((response: any) => {
+    //   this.report = response;
+    //   console.log(this.report);
+    // })
+    this.report = response.data.attributes;
+    console.log(this.report);
   }
+
+  public isSuspicious() {
+    if (this.report?.last_analysis_stats.malicious > 2 || this.report?.last_analysis_stats.suspicious > 2) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+
 }
