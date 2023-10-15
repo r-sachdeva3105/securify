@@ -20,16 +20,17 @@ export class AnalysisComponent {
   ngOnInit() {
     this.url = this.route.snapshot.paramMap.get('url');
     this.urlId = btoa(this.url);
+    this.urlId = this.urlId.replaceAll('=','');
     this.analysisReport();
   }
 
   public analysisReport() {
-    // this.appService.getReport(this.urlId).subscribe((response: any) => {
-    //   this.report = response;
-    //   console.log(this.report);
-    // })
-    this.report = response.data.attributes;
-    console.log(this.report);
+    this.appService.getReport(this.urlId).subscribe((response: any) => {
+      this.report = response.data.attributes;
+      console.log(this.report);
+    })
+    // this.report = response.data.attributes;
+    // console.log(this.report);
   }
 
   public isSuspicious() {
@@ -38,6 +39,13 @@ export class AnalysisComponent {
     } else {
       return false
     }
+  }
+
+  public formatDate(date: number) {
+    if (date === undefined) {
+      return 'N/A';
+    }
+    return new Date(date * 1000).toLocaleString();
   }
 
 

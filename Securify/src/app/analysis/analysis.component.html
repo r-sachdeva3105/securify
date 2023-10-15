@@ -1,12 +1,46 @@
 <h1>URL Report</h1>
+<h2>{{report?.url}}</h2>
 <div>
-    <h2>Result</h2>
-    <p class="green" *ngIf="!isSuspicious()">This website looks safe</p>
-    <p class="red" *ngIf="isSuspicious()">This website looks suspicious</p>
+    <h3>Result</h3>
+    <mat-card>
+        <mat-card-content>
+            <p class="green" *ngIf="!isSuspicious()">This website looks safe</p>
+            <p class="green" *ngIf="!isSuspicious()">You can redirect to <a target="_blank"
+                    href="{{report?.url}}">{{report?.url}}</a></p>
+            <p class="red" *ngIf="isSuspicious()">This website looks suspicious</p>
+            <p class="red" *ngIf="isSuspicious()">Redirection is not recommended</p>
+        </mat-card-content>
+    </mat-card>
+</div>
+<div class="flex">
+    <div>
+        <h3>General Information</h3>
+        <mat-card>
+            <mat-card-content>
+                <p>TLD: {{report?.tld}}</p>
+                <p>Title: {{report?.title}}</p>
+                <p>Reputation: {{report?.reputation}}</p>
+                <p>Last Analysis Date: {{formatDate(report?.last_analysis_date)}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div>
+        <h3>Security and Privacy Concerns</h3>
+        <mat-card>
+            <mat-card-content>
+                <p>Harmless Votes: {{report?.last_analysis_stats?.harmless}}</p>
+                <p>Malicious Votes: {{report?.last_analysis_stats?.malicious}}</p>
+                <p>Suspicious Votes: {{report?.last_analysis_stats?.suspicious}}</p>
+                <p>Undetected Votes: {{report?.last_analysis_stats?.undetected}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>
 <div>
-    <h2>General Information</h2>
-</div>
-<div>
-    <h2>Security and Privacy Concerns</h2>
+    <h3>Outgoing Links</h3>
+    <mat-card>
+        <mat-card-content>
+            <p *ngFor="let link of report?.outgoing_links">{{link}}</p>
+        </mat-card-content>
+    </mat-card>
 </div>

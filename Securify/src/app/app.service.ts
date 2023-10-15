@@ -19,7 +19,7 @@ export class AppService {
       .set('accept', 'application/json')
       .set('x-apikey', this.apiKey)
 
-    // return this.http.get<any[]>(this.getApiUrl + id, { 'headers': headers });
-    return this.http.get<any>(`${this.json}`);
+    return this.http.get<any[]>(this.getApiUrl + id, { 'headers': headers });
+    // return this.http.get<any>(`${this.json}`);
   }
 }
